@@ -11,11 +11,15 @@ COPY package.json  ./
 RUN npm install
 
 # Copy the app files to the container
-COPY app.js index.html style.css ./
+COPY dist/ ./dist/
+COPY server.js ./
+
+# Specify the port on which the server is to be run
+ENV PORT=3000
 
 # Expose the port on which the app will run
 EXPOSE 3000
 
 # Set the command to run your app when the container starts
-CMD [ "node", "app.js" ]
+CMD [ "node", "server.js" ]
 
